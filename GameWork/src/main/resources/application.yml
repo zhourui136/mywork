@@ -1,0 +1,33 @@
+server:
+  port: 8090
+#spring
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: mywork
+  #mysql
+  datasource:
+     url: jdbc:mysql://localhost:3306/gs?useUnicode=true&characterEncoding=utf8
+     username: root
+     password: root
+     driver-class-name: com.mysql.cj.jdbc.Driver
+#mybatis-plus
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+
+logging:
+  path: /home/zhourui/IdeaProjects/mywork/
+  file: gws.log
+  level:
+    root: debug
+    com.gs.mapper: trace
+  pattern:
+    console: -%d{yyyy-MM-dd}-%i.log
+    file: -%d{yyyy-MM-dd}-%i.log
+
+html:
+  path: /file/project.html
+font: /font/simsun.ttf
+pwd_key: abcdefgabcdefg12
+pwd_iv: 5e8y6w45ju8w9jq8

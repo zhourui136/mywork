@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+    <link href="css/jquery-ui-1.8.16.custom.css" type="text/css" rel="stylesheet"/>
+    <link href="css/ui.jqgrid.css" type="text/css" rel="stylesheet"/>
+    <link href="css/global.css" type="text/css" rel="stylesheet"/>
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/jquery.jqGrid.src.js"></script>
+    <script src="js/grid.locale-cn.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/echarts.min.js"></script>
+    <script src="js/macarons.js"></script>
+    <script src="js/urls.js"></script>
+    <style type="text/css">
+
+        body {
+            line-height: 1.42857143;
+            color: #333;
+            font-size: .875rem;
+            font-size: 12px;
+            font-family: SimSun; /*字体写成这样，否则乱码，有可能中文不显示*/
+            overflow-x: hidden;
+            /*background: #165b9d;*/
+        }
+
+        fieldset,
+        img {
+            border: none;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        article,
+        aside,
+        details,
+        figcaption,
+        figure,
+        footer,
+        header,
+        hgroup,
+        main,
+        menu,
+        nav,
+        section,
+        summary {
+            display: block
+        }
+
+        audio,
+        canvas,
+        progress,
+        video {
+            display: inline-block;
+            vertical-align: baseline
+        }
+
+        audio:not([controls]) {
+            display: none;
+            height: 0
+        }
+
+        [hidden],
+        template {
+            display: none
+        }
+
+        a {
+            background-color: transparent
+        }
+
+        a:active,
+        a:hover {
+            outline: 0
+        }
+
+        abbr[title] {
+            border-bottom: 1px dotted
+        }
+
+        b,
+        strong {
+            font-weight: 700
+        }
+
+        dfn {
+            font-style: italic
+        }
+
+        h1 {
+            margin: .67em 0;
+            font-size: 2em
+        }
+
+        s mark {
+            color: #000;
+            background: #ff0
+        }
+
+        small {
+            font-size: 80%
+        }
+
+        sub,
+        sup {
+            position: relative;
+            font-size: 75%;
+            line-height: 0;
+            vertical-align: baseline
+        }
+
+        sup {
+            top: -.5em
+        }
+
+        sub {
+            bottom: -.25em
+        }
+
+        img {
+            border: 0
+        }
+
+        svg:not(:root) {
+            overflow: hidden
+        }
+
+        figure {
+            margin: 1em 40px
+        }
+
+        hr {
+            height: 0;
+            -webkit-box-sizing: content-box;
+            -moz-box-sizing: content-box;
+            box-sizing: content-box
+        }
+
+        pre {
+            overflow: auto
+        }
+
+        code,
+        kbd,
+        pre,
+        samp {
+            font-family: monospace, monospace;
+            font-size: 1em
+        }
+
+        button,
+        input,
+        optgroup,
+        select,
+        textarea {
+            margin: 0;
+            font: inherit;
+            color: inherit
+        }
+
+        button {
+            overflow: visible
+        }
+
+        button,
+        select {
+            text-transform: none
+        }
+
+        button,
+        html input[type=button],
+        input[type=reset],
+        input[type=submit] {
+            -webkit-appearance: button;
+            cursor: pointer
+        }
+
+        button[disabled],
+        html input[disabled] {
+            cursor: default
+        }
+
+        button::-moz-focus-inner,
+        input::-moz-focus-inner {
+            padding: 0;
+            border: 0
+        }
+
+        input {
+            line-height: normal;
+            outline: none;
+        }
+
+        input[type=checkbox],
+        input[type=radio] {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            padding: 0
+        }
+
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            height: auto
+        }
+
+        input[type=search] {
+            -webkit-box-sizing: content-box;
+            -moz-box-sizing: content-box;
+            box-sizing: content-box;
+            -webkit-appearance: textfield
+        }
+
+        input[type=search]::-webkit-search-cancel-button,
+        input[type=search]::-webkit-search-decoration {
+            -webkit-appearance: none
+        }
+
+        fieldset {
+            padding: .35em .625em .75em;
+            margin: 0 2px;
+            border: 1px solid silver
+        }
+
+        legend {
+            padding: 0;
+            border: 0
+        }
+
+        textarea {
+            overflow: auto
+        }
+
+        optgroup {
+            font-weight: 700
+        }
+
+        a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        input[disabled] {
+            cursor: not-allowed !important;
+            background: rgba(10, 10, 10, .1) !important;
+        }
+
+        ul,
+        li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        /*css reset*/
+
+
+        body, html {
+            height: 100%;
+        }
+
+        .col-12 {
+            width: 100%;
+        }
+
+        .col-11 {
+            width: 91.66666667%;
+        }
+
+        .col-10 {
+            width: 83.33333333%;
+        }
+
+        .col-9 {
+            width: 75%;
+        }
+
+        .col-8 {
+            width: 66.66666667%;
+        }
+
+        .col-7 {
+            width: 58.33333333%;
+        }
+
+        .col-6 {
+            width: 49%;
+        }
+
+        .col-5 {
+            width: 41.66666667%;
+        }
+
+        .col-4 {
+            width: 33.33333333%;
+        }
+
+        .col-3 {
+            width: 25%;
+        }
+
+        .col-2 {
+            width: 16.66666667%;
+        }
+
+        .col-1 {
+            width: 8.33333333%;
+        }
+
+        .col-12,
+        .col-11,
+        .col-10,
+        .col-9,
+        .col-8,
+        .col-7,
+        .col-6,
+        .col-5,
+        .col-4,
+        .col-3,
+        .col-2,
+        .col-1 {
+            float: left;
+            box-sizing: border-box;
+        }
+
+        .container {
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .row {
+            margin-right: -15px;
+            margin-left: -15px;
+        }
+
+        .container:before,
+        .container:after,
+        .row:before,
+        .row:after {
+            display: table;
+            content: " ";
+        }
+
+        .container:after,
+        .row:after {
+            clear: both;
+        }
+
+        .fl {
+            float: left;
+        }
+
+        .fr {
+            float: right;
+        }
+
+        .text-left {
+            text-align: left;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        #main {
+            width: 1100px;
+            /*position: absolute;*/
+            margin: 0px auto;
+        }
+
+        .con {
+            position: relative;
+        }
+
+        .title {
+            background: url(http://192.168.1.40:8067/img/background/t_bg.png); /*背景图片*/
+            height: 90px;
+            width: 100%;
+            background-size: 100% 100%;
+            margin: 0px;
+        }
+
+        .sub_title {
+            margin: 0px;
+            text-align: center;
+            font-size: 18px;
+            color: #eca142;
+            margin-bottom: 10px;
+            padding: 0px 20px;
+        }
+
+        .t_con {
+            color: #fff;
+            font-size: 18px;
+            top: 29px;
+            left: 96px;
+            position: relative;
+
+        }
+
+        .con_text {
+            color: #1f4e79;
+            font-size: 18px;
+            padding: 0px 20px;
+            text-indent: 40px;
+            margin: 0px;
+            margin-top: 5px;
+        }
+
+        .tj {
+            width: 999px;
+            padding: 0px 50px;
+            margin-top: 10px;
+        }
+
+        .tj ul {
+            list-style: none;
+        }
+
+        .tj ul li {
+            width: 330px;
+            text-align: left;
+            /*padding:0px 10;*/
+            float: left;
+            position: relative;
+            height: 100px;
+            background: blue;
+            margin: 5px 0px;
+        }
+
+
+        .tj_t {
+            font-size: 18px;
+            padding-left: 10px;
+            color: #fff;
+        }
+
+        .tj_num {
+            color: #30c9fa;
+            font-size: 18px;
+            margin-left: 10px;
+        }
+
+        .tj_com {
+            margin: 15px 10px;
+        }
+
+        /*.border{
+            border-right: 1px solid #fff;
+        }*/
+
+        .hr {
+            width: 1px;
+            height: 80px;
+            background-color: #fff;
+            opacity: 0.3;
+            display: inline-block;
+            right: 40px;
+            top: -84px;
+            position: relative;
+            float: right;
+        }
+
+        .blue-box + .blue-box {
+            margin-left: 10px;
+        }
+
+        .blue-box {
+            border-radius: 3px;
+            background: #fff;
+            border: 1px solid #7e9bc4;
+        }
+
+        .blue-box .blue-box-head {
+            font-size: 18px;
+            color: #fff;
+            padding: 10px;
+            line-height: 24px;
+            overflow: hidden;
+            clear: both;
+            background: linear-gradient(to bottom, #295aa0 0%, #1e4c8b 100%);
+        }
+
+        .ring60 {
+            height: 165px;
+        }
+
+        .padlr10 {
+            padding: 0 10px;
+        }
+
+
+        .bar {
+            height: 330px;
+        }
+
+
+        .bd {
+            margin: 10px;
+            padding: 10px;
+            background: #365d98;
+            border-radius: 2px;
+            margin-bottom: 0;
+        }
+
+        .flex-row {
+            flex-direction: row;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .bd > div {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            font-size: 18px;
+            border-right: 1px solid #4873b3;
+            padding-left: 10px;
+            padding-right: 10px;
+            color: #fff;
+        }
+
+        .bd > div:last-child {
+            border: none;
+        }
+
+        .bd > div span:last-child {
+            color: orange;
+        }
+
+        .allPane, .otherPane {
+            overflow-y: auto;
+        }
+
+        .clearfix {
+        }
+
+        .clearfix {
+            clear: both;
+            overflow: hidden;
+        }
+
+        .pad10 {
+            padding: 10px;
+        }
+
+        .box-white {
+            /* border: 1px solid #535353; */
+            /* background: linear-gradient(to bottom, #4d4d4d 0%, #090909 100%); */
+            /* padding: 10px; */
+            color: #fff;
+        }
+
+        .box-white {
+            color: #fff;
+            border: 1px solid #7e9bc4;
+        }
+
+        .box-white {
+            /* padding: 10px; */
+            color: #fff;
+        }
+
+        .spans {
+            display: inline-block;
+        }
+
+        .spans {
+            background: #ebeef3;
+            margin-left: 1px;
+        }
+
+        .spans span.on {
+            color: orange;
+            background: #365d98;
+            font-weight: bold;
+        }
+
+        .spans span {
+            display: inline-block;
+            background: #ebeef3;
+            padding: 10px;
+            border: 1px solid #7e9bc4;
+            cursor: pointer;
+            margin-top: -1px;
+            color: #333;
+            margin-left: -1px;
+        }
+
+        .box-white-body {
+            /* background: #222122; */
+            /* padding: 10px; */
+            position: relative;
+        }
+
+        .table-wrap {
+            width: 100%;
+            /* overflow-x: auto; */
+        }
+
+        .nopad {
+            padding: 0 !important;
+        }
+
+        .box-white-body {
+            background: #fff;
+            padding: 10px;
+        }
+
+        .clearfix {
+            clear: both;
+            overflow: hidden;
+        }
+
+
+        .table-wrap .ui-widget-content {
+            background: none;
+        }
+
+        .table-wrap .ui-state-default,
+        .table-wrap .ui-widget-content .ui-state-default,
+        .table-wrap .ui-widget-header .ui-state-default {
+            background: none;
+        }
+
+        .table-wrap .ui-widget-content {
+            /*background: linear-gradient(to bottom, #1e1f23 0%, #2a2b2d 5%, #222 100%);*/
+            color: #77dbff;
+            border: 1px solid #ebeef3;
+        }
+
+        .table-wrap .ui-state-default,
+        .table-wrap .ui-widget-content .ui-state-default,
+        .table-wrap .ui-widget-header .ui-state-default,
+        .table-wrap .ui-button,
+        .table-wrap .ui-button.ui-state-disabled:hover,
+        .table-wrap .ui-button.ui-state-disabled:active {
+            color: #77dbff;
+            border: none !important;
+        }
+
+        .table-wrap .ui-widget-content {
+            color: #333;
+        }
+
+        .ui-jqgrid .ui-jqgrid-htable th {
+            height: auto;
+            padding: 10px 0px !important;
+            background: #365d98 !important;
+            color: #fff !important;
+        }
+
+        .ui-jqgrid-view tr:hover td {
+            background: #008dd2 !important;
+        }
+
+        .ui-corner-all,
+        .ui-corner-top,
+        .ui-corner-left,
+        .ui-corner-tl {
+            border-radius: 0;
+        }
+
+        .ui-corner-all,
+        .ui-corner-top,
+        .ui-corner-right,
+        .ui-corner-tr {
+            border-radius: 0;
+        }
+
+        .ui-corner-all,
+        .ui-corner-bottom,
+        .ui-corner-left,
+        .ui-corner-bl {
+            border-radius: 0;
+        }
+
+        .ui-corner-all,
+        .ui-corner-bottom,
+        .ui-corner-right,
+        .ui-corner-br {
+            border-radius: 0;
+        }
+
+        .table-wrap .jqlist td {
+            color: #333 !important;
+        }
+
+        .table-wrap .jqlist tr:nth-child(even) td {
+            background: #ebeef3;
+        }
+
+        .table-wrap .jqlist tr:nth-child(odd) td {
+            background: #fff;
+        }
+
+        .jqlist td a {
+            color: #ff8b00 !important;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .ui-pager-control {
+            padding-top: 5px !important;
+            padding-bottom: 5px !important;
+        }
+
+        .ui-pg-input {
+            color: #333;
+        }
+
+        .ui-jqgrid tr.jqgrow td {
+            white-space: normal !important;
+            height: auto;
+            padding: 8px 0;
+            text-align: center;
+        }
+
+        #line {
+            height: 330px;
+        }
+
+
+        /*滚动条*/
+
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            border-radius: 5px;
+            -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+            background: rgba(0, 0, 0, .5);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, .3);
+        }
+
+        ::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+            border-radius: 2px;
+        }
+
+
+        /*滚动条 end*/
+
+    </style>
+</head>
+
+<body class="flex flex-column">
+<!-- <header class="head clearfix">
+
+</header> -->
+<main id="main" class="main">
+    <div class="con">
+        <h4 class="title">
+            <span class="t_con">总结</span>
+        </h4>
+        <p class="con_text">
+            数据总体运转正常，今日共收到23家共享单位提供数据，共上传20Mb数据，整体数据项完成度为76%，同比提高了14%，航班覆盖率为94%，同比提高了16%。
+        </p>
+    </div>
+    <div class="con">
+        <h4 class="title">
+            <span class="t_con">今日数据共享问题</span>
+        </h4>
+        <p class="con_text">
+            中国南方航空公司今日发现有数据断传情况，东方航空公司和长龙航空公司今日没有上传数据。
+        </p>
+        <p class="con_text">
+            中国南方航空公司数据质量较昨日有所下降。数据覆盖率下降了12%。
+        </p>
+    </div>
+    <div class="tj">
+        <ul>
+            <li class="border">
+                <div class="tj_com">
+                    <span class="tj_t">开放数据单位数（个）</span><span class="tj_num">22</span>
+                </div>
+                <div class="tj_com">
+                    <span class="tj_t">平均计划航班架次（架次）</span><span class="tj_num">0</span>
+                </div>
+                <div class="hr"></div>
+            </li>
+            <li>
+                <div class="tj_com">
+                    <span class="tj_t">开放运行数量</span><span class="tj_num">6070207</span>
+                </div>
+                <div class="tj_com">
+                    <span class="tj_t">平均开放航班架次（架次）</span><span class="tj_num">0</span>
+                </div>
+                <div class="hr"></div>
+            </li>
+            <li>
+                <div class="tj_com">
+                    <span class="tj_t">开放数据项（项）</span><span class="tj_num">157</span>
+                </div>
+                <div class="tj_com">
+                    <span class="tj_t">平均计划每天航班覆盖率（%）</span><span class="tj_num">0.0%</span>
+                </div>
+            </li>
+            <li>
+                <div class="tj_com">
+                    <span class="tj_t">开放航班架次（架次）</span><span class="tj_num">17365</span>
+                </div>
+                <div class="tj_com">
+                    <span class="tj_t">平均每天数据量（条）</span><span class="tj_num">13</span>
+                </div>
+                <div class="hr"></div>
+            </li>
+            <li>
+                <div class="tj_com">
+                    <span class="tj_t">计划航班架次（架次）</span><span class="tj_num">39386</span>
+                </div>
+                <div class="tj_com">
+                    <span class="tj_t">平均每天存储量（M）</span><span class="tj_num">0</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="col-12 " style="padding-left: 50px;margin-top: 20px;margin-bottom: 10px;">
+        <div class="blue-box col-6">
+            <div class="blue-box-head">
+                数据项开放情况统计
+            </div>
+            <div class="blue-box-body">
+                <div class="bar" id="bar3"></div>
+            </div>
+        </div>
+        <div class="blue-box col-6">
+            <div class="blue-box-head">
+                运行单位开放度完成情况排名
+            </div>
+            <div class="blue-box-body">
+                <div class="col-6">
+                    <div class="ring60" id="ring1_1"></div>
+                </div>
+                <div class="col-6">
+                    <div class="ring60" id="ring1_2"></div>
+                </div>
+                <div class="col-6">
+                    <div class="ring60" id="ring1_3"></div>
+                </div>
+                <div class="col-6">
+                    <div class="ring60" id="ring1_4"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- <script src="js/page/index.js"></script> -->
+<script type="text/javascript">
+    var ouoUrl = urls.home_operationUnitOpenness; //运行单位开放度完成情况排名---饼图
+    var dioBarUrl = urls.home_dataItemOpening_bar; //数据项开放情况统计--柱形图
+    var placeHolderStyle = {
+        normal: {
+            label: {
+                show: false
+            },
+            labelLine: {
+                show: false
+            },
+            color: "rgba(0,0,0,0)",
+            borderWidth: 0
+        },
+        emphasis: {
+            color: "rgba(0,0,0,0)",
+            borderWidth: 0
+        }
+    };
+    var dataStyle = {
+        normal: {
+            formatter: '{c}%',
+            position: 'center',
+            show: true,
+            textStyle: {
+                fontSize: '20',
+                fontWeight: 'normal',
+                color: '#df9f58'
+            }
+        }
+    };
+
+    var ringLinearOption = {
+        title: [{
+            text: '',
+            left: '48%',
+            top: '55%',
+            textAlign: 'center',
+            textStyle: {
+                fontWeight: 'normal',
+                fontSize: '14',
+                color: '#333',
+                textAlign: 'center',
+            },
+        }],
+        series: [{
+            type: 'pie',
+            hoverAnimation: false,
+            radius: ['70%', '82%'],
+            center: ['50%', '50%'],
+            labelLine: {
+                normal: {
+                    show: false
+                }
+            },
+            label: {
+                normal: {
+                    position: 'center'
+                }
+            },
+            data: [{
+                value: 0,
+                itemStyle: {
+                    normal: {
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                            offset: 0,
+                            color: '#f4b243'
+                        }, {
+                            offset: 1,
+                            color: '#f0763c'
+                        }]),
+                    }
+                },
+                label: dataStyle,
+            }, {
+                value: 0,
+                itemStyle: placeHolderStyle,
+            }]
+        },
+            {
+                type: 'pie',
+                hoverAnimation: false,
+                radius: ['75%', '77%'],
+                center: ['50%', '50%'],
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                label: {
+                    normal: {
+                        position: 'center'
+                    }
+                },
+                data: [{
+                    value: 0,
+                    itemStyle: placeHolderStyle
+                },
+                    {
+                        value: 0,
+                        itemStyle: {
+                            normal: {
+                                color: '#fff4db'
+                            }
+                        }
+                    }
+
+                ]
+            }
+        ]
+    };
+    var barOption = {
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow'
+            },
+            formatter: ' {a}<br/>{b}: {c}'
+        },
+        grid: {
+            top: '2%',
+            left: '8%',
+            right: '8%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis: [{
+            type: 'value',
+            axisLine: {
+                show: false
+            },
+            splitLine: {
+                show: false
+            },
+            axisTick: {
+                show: false
+            },
+            axisLabel: {
+                show: false
+            }
+        }],
+        yAxis: [{
+            type: 'category',
+            inverse: true,
+            data: [],
+            axisTick: {
+                show: false,
+                alignWithLabel: true
+            },
+            axisLine: {
+                show: false
+            },
+            axisLabel: {
+                color: '#333',
+                fontSize: 14
+            }
+        },
+            {
+                type: 'category',
+                inverse: true,
+                axisLine: {
+                    show: false
+                },
+                axisTick: {
+                    show: false
+                },
+                axisLabel: {
+                    color: '#ef5214',
+                    fontSize: 14
+                },
+                data: []
+            }
+        ],
+        series: [{
+            name: '',
+            type: 'bar',
+            barWidth: '30%',
+            itemStyle: {
+                normal: {
+                    barBorderRadius: 20,
+                    color: {
+                        colorStops: [{
+                            offset: 0,
+                            color: '#3dc0e9' // 0% 处的颜色
+                        }, {
+                            offset: 1,
+                            color: '#45e3cf' // 100% 处的颜色
+                        }],
+                        globalCoord: false, // 缺省为 false
+                    }
+                },
+            },
+            label: {
+                normal: {
+                    show: false
+                }
+            },
+            data: []
+        }]
+    };
+
+    $(function () {
+
+        ring1_1 = echarts.init(document.getElementById('ring1_1'), e_macarons);
+        ring1_1.setOption(ringLinearOption);
+        ring1_2 = echarts.init(document.getElementById('ring1_2'), e_macarons);
+        ring1_2.setOption(ringLinearOption);
+        ring1_3 = echarts.init(document.getElementById('ring1_3'), e_macarons);
+        ring1_3.setOption(ringLinearOption);
+        ring1_4 = echarts.init(document.getElementById('ring1_4'), e_macarons);
+        ring1_4.setOption(ringLinearOption);
+        renderLinearRing(ouoUrl, {});
+
+        bar1 = echarts.init(document.getElementById('bar3'));
+        bar1.setOption(barOption);
+        renderBar(dioBarUrl, {}, bar1);
+    });
+
+
+    //初始化自定义表格
+    function renderLinearRing(url, cs) {
+        $.getJSON(url, cs, function (data) {
+            data.forEach(function (item, i) {
+                var a = [];
+                var b = [];
+                var c = eval('ring1_' + (i + 1));
+                c.setOption({
+                    title: [{
+                        text: item.name
+                    }],
+                    series: [{
+                        data: [{
+                            value: item.value,
+                            itemStyle: {
+                                normal: {
+                                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                        offset: 0,
+                                        color: '#f4b243'
+                                    }, {
+                                        offset: 1,
+                                        color: '#f0763c'
+                                    }]),
+                                }
+                            },
+                            label: dataStyle,
+                        }, {
+                            value: 100 - item.value,
+                            itemStyle: placeHolderStyle,
+                        }]
+                    }, {
+                        data: [{
+                            value: item.value,
+                            itemStyle: placeHolderStyle
+                        },
+                            {
+                                value: 100 - item.value,
+                                itemStyle: {
+                                    normal: {
+                                        color: '#fff4db'
+                                    }
+                                }
+                            }
+
+                        ]
+                    }]
+
+                })
+            });
+        });
+    }
+
+
+    //饼图
+    function renderBar(url, cs, dom, f) {
+        $.getJSON(url, cs, function (data) {
+            dom.setOption({
+                tooltip: {
+                    formatter: function (p) {
+                        console.log(p);
+                        if (f) {
+                            return p[0].name + ':' + p[0].value + '%';
+                        } else {
+                            return p[0].name + ':' + p[0].value;
+                        }
+                    }
+                },
+                yAxis: [{
+                    data: data.category
+                }, {
+                    data: data.ydata ? data.ydata : data.data
+                }],
+                series: [{
+                    name: cs.choose,
+                    data: data.data
+                }]
+            });
+        })
+
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+server:
+  port: 8282
+  connection-timeout: 1000ms
+  compression:
+    enabled: true
+  tomcat:
+    max-threads: 100
+    max-connections: 10
+    min-spare-threads: 5
+    uri-encoding: UTF-8
+  servlet:
+    session:
+      cookie:
+        http-only: true
+        domain: /
+spring:
+  application:
+    name: exceldemo
+  devtools:
+    restart:
+      enabled: false
+  http:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+  main:
+    allow-bean-definition-overriding: true
+logging:
+  config: classpath:log4j2.xml
+
+sharding:
+  jdbc:
+    datasource:
+      names: master0,slave0
+      master0:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://192.168.55.134:3306/yushi_website?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+        username: website
+        password: website@123
+        maxActive: 20
+        initialSize: 1
+        minIdle: 1
+        validationQuery: select 1
+        testWhileIdle: true
+      slave0:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://192.168.55.134:3306/yushi_website?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+        username: website
+        password: website@123
+        maxActive: 20
+        initialSize: 1
+        minIdle: 1
+        validationQuery: select 1
+        testWhileIdle: true
+    config:
+      masterslave:
+        load-balance-algorithm-type: random
+        name: ms
+        master-data-source-name: master0
+        slave-data-source-names: slave0
+      props:
+        sql:
+          show: true
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*Mapper.xml
+  global-config:
+    db-config:
+      id-type: id_worker
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+
+pandora:
+  web:
+    enabled: true

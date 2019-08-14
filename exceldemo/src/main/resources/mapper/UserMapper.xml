@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.excel.model.mapper.UserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.excel.model.entity.UserE">
+        <id column="user_id" property="userId" />
+        <result column="user_name" property="userName"/>
+        <result column="age" property="age"/>
+        <result column="ctime" property="ctime" />
+        <result column="utime" property="utime" />
+        <result column="is_deleted" property="isDeleted" />
+    </resultMap>
+</mapper>

@@ -1,0 +1,19 @@
+package com.gs.config;
+
+import com.baomidou.mybatisplus.plugins.PaginationInterceptor;
+import org.springframework.context.annotation.Bean;
+
+/**
+ * MybatisPlus配置类
+ *
+ * @author zhourui
+ */
+public class MybatisPlusConfig {
+    @Bean
+    public PaginationInterceptor paginationInterceptor() {
+        PaginationInterceptor page = new PaginationInterceptor();
+        //设置方言类型
+        page.setDialectType("mysql");
+        return page;
+    }
+}

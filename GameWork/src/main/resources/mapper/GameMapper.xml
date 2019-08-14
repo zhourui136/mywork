@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gs.mapper.GameMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.gs.entity.Game">
+        <id column="game_id" property="gameId"/>
+        <result column="game_number" property="gameNumber"/>
+        <result column="game_name" property="gameName"/>
+        <result column="merchant_id" property="merchantId"/>
+        <result column="count" property="count"/>
+        <result column="is_enabled" property="isEnabled"/>
+        <result column="is_deleted" property="isDeleted"/>
+        <result column="ctime" property="ctime"/>
+        <result column="utime" property="utime"/>
+    </resultMap>
+    <select id="findAll" resultMap="BaseResultMap">
+        select * from game
+    </select>
+</mapper>

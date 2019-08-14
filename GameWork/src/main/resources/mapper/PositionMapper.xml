@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gs.mapper.PositionMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.gs.model.entity.PositionE">
+        <id column="position_id" property="positionId"/>
+        <result column="position_kind" property="positionKind"/>
+        <result column="position_name" property="positionName"/>
+        <result column="work_experience" property="workExperience"/>
+        <result column="education_requirement" property="educationRequirement"/>
+        <result column="publish_status" property="publishStatus"/>
+        <result column="is_full_time" property="isFullTime"/>
+        <result column="position_describe" property="positionDescribe"/>
+        <result column="position_requirement" property="positionRequirement"/>
+        <result column="contact_info" property="contactInfo"/>
+        <result column="creator_uid" property="creatorUid"/>
+        <result column="operator_uid" property="operatorUid"/>
+        <result column="publisher_uid" property="publisherUid"/>
+        <result column="delete_uid" property="deleteUid"/>
+        <result column="publish_time" property="publishTime"/>
+        <result column="delete_time" property="deleteTime"/>
+        <result column="ctime" property="ctime"/>
+        <result column="utime" property="utime"/>
+        <result column="is_deleted" property="isDeleted"/>
+    </resultMap>
+</mapper>
