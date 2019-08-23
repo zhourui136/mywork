@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mobile.device.Device;
 import org.springframework.mobile.device.LiteDeviceResolver;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -58,7 +59,7 @@ public class GameController {
 //    }
 
     @RequestMapping("/addGame")
-    public List<Game> addGame(HttpServletRequest request) {
+    public List<Game> addGame(HttpServletRequest request) throws Exception {
         String ip = IpUtils.getIpAddr(request);
         //gameService.saveOrUpdateGame();
         log.error("ip地址:"+ip);
@@ -87,4 +88,9 @@ public class GameController {
         }
         return deviceType;
     }
+    @RequestMapping("/getGame")
+    public Game getGame(@RequestParam("gameId") Long gameId) throws Exception {
+        return gameService.getGame(gameId);
+    }
 }
+

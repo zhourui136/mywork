@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableLogic;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.FieldFill;
-import com.baomidou.mybatisplus.enums.IdType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -32,6 +31,11 @@ public class Game implements Serializable {
 
     @TableField("game_number")
     private String gameNumber;
+    /**
+     * 数字签名
+     */
+    @TableField("signature")
+    private String signature;
     /**
      * 游戏名称
      */

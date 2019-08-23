@@ -24,5 +24,7 @@ public interface GameService {
     /**
      * 新增游戏
      */
-    List<Game> saveGame();
+    List<Game> saveGame() throws Exception;
+
+    Game getGame(Long gameId) throws Exception;
 }

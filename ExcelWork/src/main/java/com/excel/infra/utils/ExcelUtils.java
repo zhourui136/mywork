@@ -3,15 +3,16 @@ package com.excel.infra.utils;
 import com.alibaba.excel.EasyExcelFactory;
 import com.alibaba.excel.ExcelWriter;
 import com.alibaba.excel.metadata.BaseRowModel;
+import com.alibaba.excel.metadata.Font;
 import com.alibaba.excel.metadata.Sheet;
+import com.alibaba.excel.metadata.TableStyle;
 import com.excel.listener.ExcelListener;
 import com.excel.model.MultipleSheelPropety;
+import org.apache.poi.ss.usermodel.IndexedColors;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -132,7 +133,7 @@ public class ExcelUtils {
      * @param data     数据源
      * @param head     表头
      */
-    public static void writeBySimple(String filePath, List<List<Object>> data, List<String> head) {
+    public static void writeBySimple(String filePath, List<List<Object>> data, List<List<String>> head) {
         writeSimpleBySheet(filePath, data, head, null);
     }
 
@@ -144,22 +145,44 @@ public class ExcelUtils {
      * @param sheet    excle页面样式
      * @param head     表头
      */
-    public static void writeSimpleBySheet(String filePath, List<List<Object>> data, List<String> head, Sheet sheet) {
+    public static void writeSimpleBySheet(String filePath, List<List<Object>> data, List<List<String>> head, Sheet sheet) {
 
         sheet = (sheet != null) ? sheet : initSheet;
 
+        Sheet sheet2 = new Sheet(1,0);
+
+        //定义Excel正文背景颜色
+        TableStyle tableStyle = new TableStyle();
+        tableStyle.setTableContentBackGroundColor(IndexedColors.WHITE);
+
+        tableStyle.setTableHeadBackGroundColor(IndexedColors.WHITE);
+
+        Font font = new Font();
+        font.setFontHeightInPoints((short) 10);
+        font.setFontName("宋体");
+
+        Font headFont = new Font();
+        headFont.setFontName("宋体");
+        headFont.setFontHeightInPoints((short) 12);
+
+        tableStyle.setTableContentFont(font);
+        tableStyle.setTableHeadFont(headFont);
+
         if (head != null) {
-            List<List<String>> list = new ArrayList<>();
-            head.forEach(h -> list.add(Collections.singletonList(h)));
-            sheet.setHead(list);
+            sheet.setHead(head);
+            sheet.setTableStyle(tableStyle);
+            sheet.setSheetName("考勤明细表");
         }
+        sheet2.setHead(head);
+        sheet2.setTableStyle(tableStyle);
+        sheet2.setSheetName("考勤汇总表");
 
         OutputStream outputStream = null;
         ExcelWriter writer = null;
         try {
             outputStream = new FileOutputStream(filePath);
             writer = EasyExcelFactory.getWriter(outputStream);
-            writer.write1(data, sheet);
+            writer.write1(data, sheet).write1(data,sheet2);
         } catch (FileNotFoundException e) {
             System.err.println("找不到文件或文件路径错误, 文件：" + filePath);
         } finally {

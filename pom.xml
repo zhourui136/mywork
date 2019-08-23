@@ -8,6 +8,7 @@
         <module>GameWork</module>
         <module>exceldemo</module>
         <module>pdfdemo</module>
+        <module>salary</module>
     </modules>
 
     <parent>
